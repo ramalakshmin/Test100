@@ -1,0 +1,73 @@
+﻿<Window x:Class="WSystemSelection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="clr-namespace:Gss.DPS.FX.Client.Application"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Topmost="True"    xmlns:Local="clr-namespace:Gss.DPS.FX.Client.UI.Controls.Custom;assembly=Gss.DPS.FX.Client.UI.Controls"
+    Title="Document Truncation System" x:Uid="SYS_SEL_DLG" x:Name="SystemSelwin" MaxHeight="700" Height="Auto" Width="500"  WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize"
+        xmlns:UI="clr-namespace:Gss.DPS.FX.Client.UI.Controls.Native;assembly=Gss.DPS.FX.Client.UI.Controls">
+    <Grid Name="mygrid" Background="SteelBlue">
+    <Grid.RowDefinitions>
+
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="75" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="29" />
+        </Grid.RowDefinitions>
+        <UI:UIStackPanel Orientation="Horizontal" Grid.Row="0" x:Uid="SYS_SEL_DLG_LGN_SUCC_MSG_SPNL"  x:Name="SYS_SEL_DLG_LGN_SUCC_MSG_SPNL" >
+            <UI:UILabel HorizontalContentAlignment="Left"  x:Uid="SYS_SEL_DLG_LGN_SUCC_MSG_LBL"  x:Name="SYS_SEL_DLG_LGN_SUCC_MSG_LBL" Height="23" Padding="2" Content="Last Successful Login   :" ></UI:UILabel>
+            <UI:UILabel DockPanel.Dock="Right" HorizontalContentAlignment="Left"  x:Uid="SYS_SEL_DLG_LGN_SUCC_VALUE_LBL"  x:Name="SYS_SEL_DLG_LGN_SUCC_VALUE_LBL" Height="23" Padding="2" ></UI:UILabel>
+          </UI:UIStackPanel>
+        <UI:UIDockPanel Grid.Row="1" x:Uid="SYS_SEL_DLG_LGN_UNSUCC_MSG_SPNL"  x:Name="SYS_SEL_DLG_LGN_UNSUCC_MSG_SPNL">
+            <UI:UILabel DockPanel.Dock="Left" HorizontalContentAlignment="Left" x:Uid="SYS_SEL_DLG_LGN_UNSUCC_MSG_LBL"  x:Name="SYS_SEL_DLG_LGN_UNSUCC_MSG_LBL" Height="23" Padding="2" Content="Last login try Attempt  :" ></UI:UILabel>
+                <UI:UILabel DockPanel.Dock="Left" HorizontalContentAlignment="Left"  x:Uid="SYS_SEL_DLG_LGN_UNSUCC_VALUE_LBL"  x:Name="SYS_SEL_DLG_LGN_UNSUCC_VALUE_LBL" Height="23" Padding="2" ></UI:UILabel>
+            <UI:UIButton Visibility="Visible"  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Background="Transparent" Margin="0,0,5,0"  DockPanel.Dock="Right" Height="27" Width="27" x:Name="SYS_SEL_DLG_LGOF_BTN" HorizontalAlignment="Right" VerticalAlignment="Bottom" ToolTip="Log Off">
+                <UI:UIImage Height="24" Width="24" x:Name="SYS_SEL_DLG_LGOF_IMG" />
+            </UI:UIButton>
+        </UI:UIDockPanel>
+        <UI:UIBorder Background="AliceBlue" x:Name="SYS_SEL_DLG_APP_BORDER" x:Uid="SYS_SEL_DLG_APP_BORDER" Grid.Row="2">
+            <UI:UIListbox Background="Transparent" x:Name="SYS_SEL_DLG_WPNL" Margin="25,0,25,0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <UI:UIListbox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="SteelBlue" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightBlue" />
+                </UI:UIListbox.Resources>
+                <UI:UIListbox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </UI:UIListbox.ItemsPanel>
+                <UI:UIListbox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="75" Margin="5,0,0,0" BorderBrush="SteelBlue" BorderThickness="2" Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UI:UIListbox}},Path=Height}">
+                            <Grid>
+                                <Grid.Resources>
+                                    <d:ImageConverter x:Key="imgConv"/>
+                                </Grid.Resources>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="0.35*"/>
+                                </Grid.RowDefinitions>
+                                <UI:UIImage x:Name="SYS_SEL_DLG_IMG" Grid.Row="0" Height="35" Width="40" Source="{Binding Converter={StaticResource imgConv},ConverterParameter=APPLICATIONS,Path=ICON_DATA}"/>
+                                <UI:UILabel x:Name="SYS_SEL_DLG_LBL" HorizontalAlignment="Center"  Grid.Row="1" Content="{Binding APP_CODE}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </UI:UIListbox.ItemTemplate>
+            </UI:UIListbox>
+            
+        </UI:UIBorder>
+        <UI:UIBorder x:Name="SYS_SEL_DLG_TV_BORDER" x:Uid="SYS_SEL_DLG_TV_BORDER" Grid.Row="3">
+            <UI:UITreeview x:Name="SYS_SEL_DLG_TV" x:Uid="SYS_SEL_DLG_TV">
+               
+            </UI:UITreeview>
+        </UI:UIBorder>
+        <UI:UIDockPanel  x:Uid="SYS_SEL_DLG_BTN_DOCK_PANEL" x:Name="SYS_SEL_DLG_BTN_DOCK_PANEL" Grid.Row="4" >
+            <UI:UILabel x:Uid="SYS_SEL_DLG_LGN_SUCC_MSG_LBL" DockPanel.Dock="Left" x:Name="SYS_SEL_DLG_MSG_LBL"   HorizontalContentAlignment="Center"> </UI:UILabel>
+
+            <UI:UIButton HorizontalAlignment="Right" x:Uid="SYS_SEL_DLG_OK_BTN" DockPanel.Dock="Right" Content="OK" IsDefault="True" Margin="0,2,2,0" IsEnabled="False" x:Name="SYS_SEL_DLG_OK_BTN"  Height="23" Width="80"  >
+
+            </UI:UIButton>
+
+        </UI:UIDockPanel>
+    </Grid>
+</Window>
